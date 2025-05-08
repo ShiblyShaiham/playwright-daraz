@@ -35,7 +35,8 @@ jobs:
       # Run Playwright tests and generate HTML report
       - name: Run tests
         run: |
-          pytest --html=report.html --self-contained-html  # Run Playwright tests and generate report
+         pytest --html=./pseries/report.html --self-contained-html  # Save report inside 'pseries' folder in repo
+ # Run Playwright tests and generate report
         continue-on-error: true  # Continue even if tests fail (so we can upload the report)
 
       # Upload the test report as an artifact
