@@ -41,7 +41,7 @@ jobs:
 
       # Upload the test report as an artifact
       - name: Upload Test Report
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v2.2.3
         with:
           name: test-report  # Name of the artifact in GitHub Actions
           path: report.html  # Path to the generated test report (ensure the file is generated)
