@@ -3,44 +3,44 @@ name: Playwright Tests
 on:
   push:
     branches:
-      - main
+      - main  # Trigger on push to the main branch
   pull_request:
     branches:
-      - main
+      - main  # Trigger on pull requests to the main branch
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # Use the latest Ubuntu runner for testing
 
     steps:
       # Checkout the repository
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2  # This checks out the code in your repository
 
-      # Set up Python
+      # Set up Python (if using Python for Playwright testing)
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.9'
+          python-version: '3.9'  # Install Python 3.9 (modify if you use a different version)
 
       # Install dependencies
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
-          pip install pytest-html
-          pip install playwright
-          python -m playwright install
+          pip install -r requirements.txt  # Install dependencies from requirements.txt
+          pip install pytest-html  # Install pytest-html for HTML report generation
+          pip install playwright  # Install Playwright
+          python -m playwright install  # Install Playwright browsers (Chromium, WebKit, Firefox)
 
-      # Run tests
+      # Run Playwright tests and generate HTML report
       - name: Run tests
         run: |
-          pytest --html=report.html --self-contained-html
-        continue-on-error: true
+          pytest --html=report.html --self-contained-html  # Run Playwright tests and generate report
+        continue-on-error: true  # Continue even if tests fail (so we can upload the report)
 
-      # Upload test results as an artifact
+      # Upload the test report as an artifact
       - name: Upload Test Report
         uses: actions/upload-artifact@v2
         with:
-          name: test-report
-          path: report.html
+          name: test-report  # Name of the artifact in GitHub Actions
+          path: report.html  # Path to the generated test report (ensure the file is generated)
