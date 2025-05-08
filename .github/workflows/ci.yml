@@ -41,7 +41,7 @@ jobs:
       # Add debug step to list files in the directory
       - name: List files in the directory
         run: |
-          ls -al  # List the files to verify the report file exists
+          ls -al pseries/  # List the files to verify the report file exists
 
       # Upload the test report as an artifact
       - name: Upload Test Report
